@@ -1,0 +1,73 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Users {
+  id: ID!
+  username: String!
+  password: String!
+  firstName: String!
+  lastName: String!
+  createdAt: DateTime!
+  bids: bids
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type items {
+  id: ID!
+  itemName: String!
+  startTime: DateTime!
+  duration: Float
+  endTime: DateTime
+  bids: bids
+  highestBid: bids
+}
+
+type bids {
+  id: ID!
+  amount: Float!
+  createdAt: DateTime!
+  user: Users!
+  item: items!
+}
+
+type ReturnUser {
+  accessToken: String!
+  user: Users!
+}
+
+type Query {
+  sayHello: String!
+}
+
+type Mutation {
+  createBid(item_id: String!, amount: Float!): bids!
+  raceConditionSameBid: String!
+  registerUser(userInput: UserInputDto!): String!
+  login(userLogin: LoginDto!): ReturnUser!
+  createItem(input: InputDto!): items!
+  closeBid(team_id: String!, end_time: DateTime!): items!
+}
+
+input UserInputDto {
+  firstName: String!
+  lastName: String!
+  username: String!
+  password: String!
+}
+
+input LoginDto {
+  username: String!
+  password: String!
+}
+
+input InputDto {
+  itemName: String!
+  startTime: DateTime!
+  duration: Float!
+  endTime: DateTime!
+}
