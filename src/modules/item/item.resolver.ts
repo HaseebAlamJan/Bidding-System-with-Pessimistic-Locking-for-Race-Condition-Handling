@@ -3,7 +3,10 @@ import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { ItemEntity } from '../db/entities/item.entity';
 import { ItemService } from './item.service';
 import { InputDto } from './dto/create.dto';
+import { UseGuards } from '@nestjs/common';
+import { AuthGuard } from '../user/guard/jwt.guard';
 
+@UseGuards(AuthGuard)
 @Resolver((of) => ItemEntity)
 export class ItemResolver {
   constructor(private itemSer: ItemService) {}
