@@ -46,7 +46,6 @@ type Query {
 
 type Mutation {
   createBid(item_id: String!, amount: Float!): bids!
-  raceConditionSameBid: String!
   registerUser(userInput: UserInputDto!): String!
   login(userLogin: LoginDto!): ReturnUser!
   createItem(input: InputDto!): items!
@@ -68,6 +67,6 @@ input LoginDto {
 input InputDto {
   itemName: String!
   startTime: DateTime!
-  duration: Float!
-  endTime: DateTime!
+  duration: Float
+  endTime: DateTime
 }

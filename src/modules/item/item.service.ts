@@ -17,17 +17,24 @@ export class ItemService {
 
   async createItem(input: InputDto): Promise<ItemEntity> {
     const { startTime, endTime, itemName } = input;
-    if (endTime && endTime > startTime) {
-      input.duration = (startTime.getTime() - endTime.getTime()) / (1000 * 60);
-    } else
+    let dur: number;
+
+    if (endTime && endTime < startTime)
       throw new BadRequestException(
-        'EndDate should be greater than start date',
+        'EndDate should be greater than start date ',
       );
+    if (endTime && endTime > startTime) {
+      dur = (endTime.getTime() - startTime.getTime()) / (1000 * 60);
+    } else {
+      dur = 0;
+    }
     const create = this.itemRepo.create({
       itemName,
       startTime,
       endTime,
+      duration: dur,
     });
+
     return await this.itemRepo.save(create);
   }
 

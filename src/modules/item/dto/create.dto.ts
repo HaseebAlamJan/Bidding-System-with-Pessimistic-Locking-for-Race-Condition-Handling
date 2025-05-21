@@ -1,5 +1,5 @@
-import { Field, InputType } from '@nestjs/graphql';
-import { IsDate, IsNotEmpty, IsOptional } from 'class-validator';
+import { Field, Float, InputType } from '@nestjs/graphql';
+import { IsDate, IsNotEmpty, IsNumber, IsOptional } from 'class-validator';
 
 @InputType()
 export class InputDto {
@@ -12,12 +12,13 @@ export class InputDto {
   @IsNotEmpty()
   startTime: Date;
 
-  @Field()
+  @Field(() => Float, { nullable: true })
   @IsDate()
   @IsOptional()
+  @IsNumber()
   duration?: number;
 
-  @Field()
+  @Field(() => Date, { nullable: true })
   @IsDate()
   @IsOptional()
   endTime?: Date;

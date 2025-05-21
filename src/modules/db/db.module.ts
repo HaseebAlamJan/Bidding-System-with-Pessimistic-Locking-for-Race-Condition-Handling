@@ -16,6 +16,9 @@ import { BidEntity } from './entities/bid.entity';
       autoLoadEntities: true,
       synchronize: true,
       dropSchema: false,
+      extra: {
+        Options: '-c timezone=UTC',
+      },
     }),
     TypeOrmModule.forFeature([UserEntity, ItemEntity, BidEntity]),
   ],

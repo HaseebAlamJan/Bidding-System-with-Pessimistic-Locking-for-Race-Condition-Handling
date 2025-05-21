@@ -1,4 +1,10 @@
-import { Field, GraphQLISODateTime, ID, ObjectType } from '@nestjs/graphql';
+import {
+  Field,
+  Float,
+  GraphQLISODateTime,
+  ID,
+  ObjectType,
+} from '@nestjs/graphql';
 import {
   Column,
   Entity,
@@ -21,15 +27,15 @@ export class ItemEntity {
   itemName: string;
 
   @Field(() => GraphQLISODateTime)
-  @Column({ type: 'timestamp', nullable: false })
+  @Column({ type: 'timestamptz', nullable: true })
   startTime: Date;
 
-  @Field(() => Number, { nullable: true })
+  @Field(() => Float, { nullable: true })
   @Column('decimal', { nullable: true })
   duration?: number;
 
   @Field(() => GraphQLISODateTime, { nullable: true })
-  @Column('timestamp', { nullable: true })
+  @Column({ type: 'timestamptz', nullable: true })
   endTime?: Date;
 
   @Field(() => BidEntity, { nullable: true })

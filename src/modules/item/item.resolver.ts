@@ -6,7 +6,6 @@ import { InputDto } from './dto/create.dto';
 import { UseGuards } from '@nestjs/common';
 import { AuthGuard } from '../user/guard/jwt.guard';
 
-@UseGuards(AuthGuard)
 @Resolver((of) => ItemEntity)
 export class ItemResolver {
   constructor(private itemSer: ItemService) {}

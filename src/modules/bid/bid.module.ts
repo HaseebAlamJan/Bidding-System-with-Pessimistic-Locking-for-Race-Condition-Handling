@@ -11,17 +11,6 @@ import { AuthGuard } from '../user/guard/jwt.guard';
 @Module({
   imports: [
     UserModule,
-    // TypeOrmModule.forRoot({
-    //   type: 'postgres',
-    //   host: 'localhost',
-    //   port: 5432,
-    //   username: 'postgres',
-    //   password: 'alam',
-    //   database: 'testuser',
-    //   entities: ['BidEntity', 'UserEntity', 'ItemEntity'],
-    //   autoLoadEntities: true,
-    //   synchronize: true,
-    // }),
     TypeOrmModule.forFeature([UserEntity, ItemEntity, BidEntity]),
   ],
   providers: [BidService, BidResolver, AuthGuard],
